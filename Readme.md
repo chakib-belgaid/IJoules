@@ -82,7 +82,7 @@ To know the available parts that can be measured you can call the methdoe `get_a
 
 ``` python
 
-energy_mete r= IJoules()
+energy_meter= IJoules()
 energy_meter.configure()
 energy_meter.get_available_domains()
 ```
