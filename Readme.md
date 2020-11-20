@@ -76,3 +76,28 @@ def main()
 |  1 | 12.4085 |  10.8895 | 0.339417 |   1.60586e+09 |    6.30063e+08 | second time |
 |  2 |  7.69   |   2.5816 | 1.2774   |   1.60586e+09 |    6.33775e+08 | end         |
 
+`IJoules` allow you to measure different parts of your **CPU** based on their availablity. 
+To know the available parts that can be measured you can call the methdoe `get_available_domains`
+
+``` python
+
+energy_mete r= IJoules()
+energy_meter.configure()
+energy_meter.get_available_domains()
+```
+
+The possible domains (CPU parts) are : 
+
+- core : The energy consumption of the **core units** -in *Joules*-
+- dram : The energy consumption of **DRAM** -in *Joules*-
+- gpu : The energy consumption of intergated **GPU** -in *Joules*-
+- pkg : The whole energy consumption of the whole **CPU** (Core+GPU+other parts) -in *Joules*-
+
+The figure below will illustrate more those parts:
+
+![CPU domains](https://blog.chih.me/images/power-planes.jpg)
+
+References :
+- https://blog.chih.me/read-cpu-power-with-RAPL.html
+- https://software.intel.com/content/www/us/en/develop/articles/intel-power-gadget.html
+

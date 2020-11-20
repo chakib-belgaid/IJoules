@@ -67,17 +67,24 @@ class IJoules(object):
         """
         self._client.send(b'start')
         self._client.recv(1024)
-        self._energies = []
+        # intial_measures = {x.split(":")[0]: float(x.split(":")[1])
+        #                    for x in response.split(" ")}
+        # intial_measures.update({x: 0 for x in self.avaialable_domaines})
+        # intial_measures.update({"tag": ""})
+
+        self._energies = [self.get_energy()]
 
     def record(self, tag="tag"):
         """ 
         add a step into recording 
         """
         x = self.get_energy()
+
         x["tag"] = tag
         self._energies.append(x)
-        self._client.send(b'start')
-        self._client.recv(1024)
+        # self._client.send(b'start')
+
+        # self._client.recv(1024)
 
     def end(self, tag="end"):
         """
@@ -86,8 +93,6 @@ class IJoules(object):
         x = self.get_energy()
         x["tag"] = tag
         self._energies.append(x)
-        # self._report = self.report()
-        # self._energies =
 
     @property
     def report(self):
@@ -95,10 +100,14 @@ class IJoules(object):
         transform the energy consumption into a Dataframe
         """
         df = pd.DataFrame(self._energies)
-        df["timestamp_s"].apply(int)
-        df["timestamp_ns"].apply(int)
 
-        return df
+        df["duration_s"] = df.apply(lambda row: float(
+            row["timestamp_s"])+float(row["timestamp_ns"])/10**9, axis=1)
+
+        tags = df["tag"]
+        df = df.drop(["tag", "timestamp_s", "timestamp_ns"], axis=1).diff()
+        df["tag"] = tags
+        return df.drop(0)
 
     def destroy(self):
         """
