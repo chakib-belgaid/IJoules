@@ -70,11 +70,12 @@ def main()
 # Example 
 
 
-| |   pkg_j |   core_j |   dram_j |   timestamp_s |   timestamp_ns | tag         |
-|:--:|:--------|:--------:|:--------:|:-------------:|:--------------:|:-----------:|
-|  0 | 13.0273 |  11.4529 | 0.378235 |   1.60586e+09 |    3.14977e+07 | worker1     |
-|  1 | 12.4085 |  10.8895 | 0.339417 |   1.60586e+09 |    6.30063e+08 | second time |
-|  2 |  7.69   |   2.5816 | 1.2774   |   1.60586e+09 |    6.33775e+08 | end         |
+
+|    |   pkg_j |   core_j |   dram_j |   duration_s | Tag         |
+|:--:|:-------:|:--------:|:--------:|:------------:|:-----------:|
+|  1 | 13.5483 | 11.4319  | 0.408875 |     0.610369 | worker1     |
+|  2 | 13.5273 | 11.413   | 0.367126 |     0.60813  | second time |
+|  3 | 10.4964 |  3.47644 | 1.36255  |     2.00226  | end         |
 
 `IJoules` allow you to measure different parts of your **CPU** based on their availablity. 
 To know the available parts that can be measured you can call the methdoe `get_available_domains`
