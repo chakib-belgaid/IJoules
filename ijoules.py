@@ -76,6 +76,8 @@ class IJoules(object):
         x = self.get_energy()
         x["tag"] = tag
         self._energies.append(x)
+        self._client.send(b'start')
+        self._client.recv(1024)
 
     def end(self, tag="end"):
         """
