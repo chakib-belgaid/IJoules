@@ -159,6 +159,6 @@ def measureit(func=None):
 def goodbye():
     for server in SERVERS:
         try:
-            server.kill()
+            server.terminate()
         except error:
             pass

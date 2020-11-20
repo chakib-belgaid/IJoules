@@ -8,6 +8,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <malloc/_malloc.h>
+#include <signal.h>
 #include "/Library/Frameworks/IntelPowerGadget.framework/Headers/PowerGadgetLib.h"
 
 #define PORT 3310
@@ -26,6 +27,7 @@ bool read_core(char *response);
 bool read_dram(char *response);
 bool read_plateform(char *response);
 bool read_all(char *response);
+void sighandler(int);
 
 // TODO Add the multi packages plateform
 
@@ -62,7 +64,8 @@ int main()
     newSample = (PGSampleID *)malloc(sizeof(PGSampleID));
     int iPackage = 0;
     bool verify = false;
-
+    signal(SIGTERM, sighandler);
+    // signal(SIGTERM, SIG_IGN);
     PG_Initialize();
 
     int server_fd, new_socket, valread;
@@ -347,4 +350,17 @@ bool read_all(char *response)
     verify = read_timestamp(response + lenght);
 
     return verify;
+}
+
+void sighandler(int signum)
+{
+    if (signum == SIGTERM)
+    {
+        printf("closing the server ..\n");
+        free(oldSample);
+        free(newSample);
+        PG_Shutdown();
+        // close(server_fd);
+        exit(0);
+    }
 }
