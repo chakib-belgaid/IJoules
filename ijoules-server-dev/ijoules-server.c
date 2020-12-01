@@ -67,7 +67,7 @@ int main()
     signal(SIGTERM, sighandler);
     // signal(SIGTERM, SIG_IGN);
     PG_Initialize();
-
+    start_sampling();
     int server_fd, new_socket, valread;
     int opt = 1;
     int sockfd;

@@ -65,8 +65,9 @@ class IJoules(object):
         """
         start recording 
         """
-        self._client.send(b'start')
-        self._client.recv(1024)
+        # self._client.send(b'start')
+        # self._client.recv(1024)
+        self.get_energy()
         # intial_measures = {x.split(":")[0]: float(x.split(":")[1])
         #                    for x in response.split(" ")}
         # intial_measures.update({x: 0 for x in self.avaialable_domaines})
