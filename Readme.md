@@ -26,7 +26,7 @@ def foo():
     energy_meter.record("first part of the code ")
     # Another measurement 
     energy_meter.end()
-    data = meter.report # a dataframe containing all the energy 
+    data = energy_meter.report # a dataframe containing all the energy 
 
 ```
 
