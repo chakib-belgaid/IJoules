@@ -53,9 +53,11 @@ def foo() :
 
 ## Use it as a decorator 
 
-from ijoules import  measureit
+
 
 ``` Python 
+
+from ijoules import  measureit
 
 @measureit()
 def foo(): 
