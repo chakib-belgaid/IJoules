@@ -14,8 +14,8 @@ Ijoules can be used in 3 different ways
 ## Basic usage 
 
 ``` Python 
-from ijoules import IJoules
 
+from ijoules import IJoules
 
 def foo(): 
     energy_meter= IJoules()
